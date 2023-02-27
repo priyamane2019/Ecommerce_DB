@@ -47,7 +47,7 @@ router.post("/login", (req, res) => {
     let token;
     const { email, password } = req.body;
     //res.json({message:"loginnnn"})
-    console.log(password);
+    
     if (!email || !password) {
         return res.status(400).json({ error: "Plz filled the feild properly " });
         alert("Password should match");
@@ -60,7 +60,7 @@ router.post("/login", (req, res) => {
                 bcrypt.compare(password, userExist.password, (err, isValid) => {
 
                     token = userExist.generateAuthToken();
-                    console.log("My Token is",token);
+                
                     res.cookie("jwtoken", token, {
                         expires:new Date(Date.now() +2589000000),
                         httpOnly:true
